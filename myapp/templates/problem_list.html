@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .card {
+            border: 1px solid black;
+            width: 40%;
+            height: 270px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <h1>Список проблем</h1>
+    </div>
+<table>
+    <thead>
+    </thead>
+    <tbody>
+        <div class="d-flex justify-content-center">
+        {% for problem in problems %}
+            <div class="card">
+                <p>Имя: {{ problem.name }}</p>
+                <p>Телефон: {{ problem.phone }}</p>
+                <p>Мейл: {{ problem.email }}</p>
+                <p>Описание: {{ problem.description }}</p>
+                <p>Приоритет: {{ problem.get_priority_display }}</p>
+                <p>Дата создания: {{ problem.created_at }}</p>
+                <a href="{% url 'problem-detail' problem.id %}">Подробнее..</a>
+            </div>
+        {% empty %}
+            <tr>
+                <p colspan="6">Проблемы не найдены</p>
+            </tr>
+        {% endfor %}
+        </div>
+    </tbody>
+</table>
+
+</body>
+</html>
